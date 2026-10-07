@@ -63,7 +63,7 @@ function App() {
   return (
     <>
     <Navbar/>
-    <div className='border border-red-800 md:container md:mx-auto max-w-5xl my-5 bg-white rounded-xl p-4 h-[80vh] md:w-[50%] m-4'>
+    <div className='md:container md:mx-auto max-w-5xl my-5 bg-white rounded-xl p-4 min-h-[80vh] md:w-[50%] m-4'>
       <div className='flex justify-center '>
       <h1 className='text-2xl font-bold text-center'>iTask - Manage your todos at one place</h1>
       </div>
@@ -79,7 +79,7 @@ function App() {
         <p>Show Finished</p>
       </div>
       <div className='flex justify-center items-center'>
-      <div className='h-px w-[90%] bg-pink-400'>
+      <div className='h-px w-[90%] bg-black opacity-15'>
 
       </div>
       </div>
@@ -89,12 +89,12 @@ function App() {
       <div className='flex flex-col gap-2'>
         {todos.length == 0 && <div><p>No Todos to display</p></div>}
         {todos.map((item) =>{
-          return (showFinished || !item.isCompleted) && <div key={item.id} className='flex justify-between items-center'>
-          <div className='flex gap-4'>
+          return (showFinished || !item.isCompleted) && <div key={item.id} className='flex justify-between items-center gap-2 w-full'>
+          <div className='flex items-center gap-4 min-w-0 flex-1'>
             <input onChange={handleCheckBox} type="checkbox" checked={item.isCompleted} name={item.id} id="" />
-          <p className={item.isCompleted ? "line-through" : ""}>{item.todo}</p>
+          <p className={`${item.isCompleted ? "line-through" : ""} min-w-0 wrap-break-word`}>{item.todo}</p>
           </div>
-          <div className='flex gap-2'>
+          <div className='flex gap-2 shrink-0'>
             <button onClick={() =>handleEdit(item.id)} className='bg-violet-800 hover:bg-violet-950 px-4 py-2 rounded-xl hover:cursor-pointer text-white'><i class="ri-pencil-line"></i></button>
             <button onClick={() => handleDelete(item.id)} className='bg-violet-800 hover:bg-violet-950 px-4 py-2 rounded-xl hover:cursor-pointer text-white'><i class="ri-delete-bin-line"></i></button>
           </div>
@@ -102,17 +102,6 @@ function App() {
         })
         
         }
-         <div className='flex justify-between items-center'>
-          <div className='flex gap-4'>
-            <input type="checkbox" name="" id="" />
-          <p>Pen la ka aoo</p>
-          </div>
-          <div className='flex gap-2'>
-            <button className='bg-violet-400 px-4 py-2 rounded-xl hover:cursor-pointer text-white'><i class="ri-pencil-line"></i></button>
-            <button className='bg-violet-400 px-4 py-2 rounded-xl hover:cursor-pointer text-white'><i class="ri-delete-bin-line"></i></button>
-          </div>
-        </div>
-        
         </div>
       </div>
     </>
